@@ -4,6 +4,33 @@
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot name="Nostromo" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+    <!-- ARGS -->
+    <xacro:arg name="use_ros2_control" default="false"/>
+    <xacro:arg name="use_gazebo" default="false"/>
 
+    <!-- BASE LINKS-->
+    <link name="base_link"/>
+
+
+
+    <!-- ROVER DESCRIPTION FILES-->
+    <xacro:include filename="chassis.xacro"/>
+    <xacro:include filename="wheels.xacro"/>
+    <xacro:include filename="front_arm.xacro"/>
+    <xacro:include filename="back_arm.xacro"/>
+    <xacro:include filename="sensors.xacro"/>
+
+
+
+    <!-- PLUGINS -->
+    <xacro:unless value="$(arg use_gazebo)">          <!-- Only include pure ROS2 Control for real teleop/autonomy -->
+        <xacro:if value="$(arg use_ros2_control)">
+        <xacro:include filename="ros2_control.xacro"/>
+        </xacro:if>
+    </xacro:unless>
+
+    <xacro:if value="$(arg use_gazebo)">
+        <xacro:include filename="gazebo.xacro"/>
+    </xacro:if>
 
 </robot>
