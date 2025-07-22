@@ -1,6 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+    <!-- BACK LEFT WHEEL -->
+    <link name="bl_wheel_link">
+        <inertial>
+            <origin
+                xyz="-1.83402448895031E-05 -3.6219264903492E-05 -1.71341955668147E-06"
+                rpy="0 0 0" />
+            <mass value="18.867310689363" />
+            <inertia
+                ixx="0.931448710636633"
+                ixy="-7.31723844777308E-05"
+                ixz="1.68633296435244E-07"
+                iyy="0.491872321061188"
+                iyz="9.97050919617048E-05"
+                izz="0.491955711755028" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/wheel.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/wheel.STL" />
+            </geometry>
+        </collision>
+    </link>
 
+    <joint name="bl_wheel_joint" type="continuous">
+        <origin
+            xyz="-0.23693 -1.6687 0.5661"
+            rpy="0 0 0" />
+        <parent link="chassis_link" />
+        <child link="bl_wheel_link" />
+        <axis xyz="-1 0 0" />
+    </joint>
+
+
+
+    <!-- FRONT LEFT WHEEL -->
+    <link name="fl_wheel_link">
+        <inertial>
+            <origin
+                xyz="-1.83402752377271E-05 -3.62185525836223E-05 -1.71496452711084E-06"
+                rpy="0 0 0" />
+            <mass value="18.8673107451314" />
+            <inertia
+                ixx="0.931448713195525"
+                ixy="-7.31723874356776E-05"
+                ixz="1.6857248920017E-07"
+                iyy="0.491872323854675"
+                iyz="9.97051200890505E-05"
+                izz="0.491955711522059" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/B2-T1.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/B2-T1.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="fl_wheel_joint" type="continuous">
+        <origin
+            xyz="-0.23932 -0.31372 0.5661"
+            rpy="0 0 0" />
+        <parent link="chassis_link" />
+        <child link="fl_wheel_link" />
+        <axis xyz="-1 0 0" />
+    </joint>
+
+
+
+    <!-- FRONT RIGHT WHEEL -->
+    <link name="fr_wheel_link">
+        <inertial>
+            <origin
+                xyz="-1.83402505073982E-05 -3.62196389563918E-05 -1.71272932147915E-06"
+                rpy="0 0 0" />
+            <mass value="18.8673107527623" />
+            <inertia
+                ixx="0.931448713631485"
+                ixy="-7.31723707482081E-05"
+                ixz="1.68551936412233E-07"
+                iyy="0.491872323240505"
+                iyz="9.97070277702695E-05"
+                izz="0.491955712546938" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/B1-T2.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/B1-T2.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="fr_wheel_joint" type="continuous">
+        <origin
+            xyz="0.89828 -0.31372 0.5661"
+            rpy="0 0 0" />
+        <parent link="chassis_link" />
+        <child link="fr_wheel_link" />
+        <axis xyz="-1 0 0" />
+    </joint>
+
+
+
+    <!-- BACK RIGHT WHEEL -->
+    <link name="br_wheel_link">
+        <inertial>
+            <origin
+                xyz="-1.83402784663667E-05 -3.62200893604392E-05 -1.71386265845896E-06"
+                rpy="0 0 0" />
+            <mass value="18.8673108839599" />
+            <inertia
+                ixx="0.931448719586832"
+                ixy="-7.31723676735665E-05"
+                ixz="1.68676574323017E-07"
+                iyy="0.491872326242131"
+                iyz="9.97065634605709E-05"
+                izz="0.491955715536099" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/B1-T1.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/B1-T1.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="br_wheel_joint" type="continuous">
+        <origin
+            xyz="0.90068 -1.6687 0.5661"
+            rpy="0 0 0" />
+        <parent link="chassis_link" />
+        <child link="br_wheel_link" />
+        <axis xyz="-1 0 0" />
+    </joint>
 
 </robot>

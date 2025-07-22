@@ -131,7 +131,7 @@
 
 
 
-    <!-- FRONT DRUM BUCKETS (active) TODO: NOT SHOWING UP FOR SOME REASON -->
+    <!-- FRONT DRUM BUCKETS (active) TODO: DRUMS ARENT ACTUALLY IN THE STL FILE -->
     <link name="front_drum_link">
         <inertial>
             <origin
