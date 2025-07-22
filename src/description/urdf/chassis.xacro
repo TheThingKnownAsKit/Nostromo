@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+    <!-- CHASSIS BASE -->
     <link name="chassis_link">
         <inertial>
             <origin
@@ -37,6 +38,49 @@
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <parent link="base_link"/>
         <child link="chassis_link"/>
+    </joint>
+
+
+
+    <!-- CHASSIS FRAME -->
+    <link name="chassis_frame_link">
+        <inertial>
+            <origin
+            xyz="3.39613712763143E-07 0.347798169941456 -0.0177700050440999"
+            rpy="0 0 0" />
+            <mass
+            value="30.2498266829679" />
+            <inertia
+            ixx="1.16589193276469"
+            ixy="-3.97820108963737E-06"
+            ixz="1.06729811081811E-05"
+            iyy="1.02022955561464"
+            iyz="3.6126005347596E-05"
+            izz="0.291904582682362" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/chassis_frame.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.898039215686275 0.92156862745098 0.929411764705882 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/chassis_frame.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="chassis_frame_joint" type="fixed">
+        <origin
+            xyz="0.32868 -1.0041 0.6811"
+            rpy="1.5708 0 0" />
+        <parent link="chassis_link" />
+        <child link="chassis_frame_link" />
     </joint>
 
 </robot>

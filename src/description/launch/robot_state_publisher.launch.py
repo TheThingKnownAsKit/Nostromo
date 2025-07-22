@@ -15,7 +15,7 @@ def generate_launch_description():
 
     # ----- Directories
     pkg_share = get_package_share_directory('description')
-    xacro_file = PathJoinSubstitution([pkg_share, 'urdf', 'side1.urdf'])
+    xacro_file = PathJoinSubstitution([pkg_share, 'urdf', 'robot.xacro.urdf'])
 
     robot_description_content = Command([
         'xacro ', xacro_file,

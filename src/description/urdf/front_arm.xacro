@@ -1,6 +1,260 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+    <!-- LINEAR ACTUATOR (passive)-->
+    <link name="front_linear_actuator_link">
+        <inertial>
+            <origin
+                xyz="0.0380355253847269 0.142121909487225 -0.0452638574344389"
+                rpy="0 0 0" />
+            <mass value="2.22064249600735" />
+            <inertia
+                ixx="0.0142384718656982"
+                ixy="-1.29696403983512E-05"
+                ixz="5.56244555558496E-06"
+                iyy="0.0031164144985384"
+                iyz="-0.00119853647434195"
+                izz="0.012546403335276" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/front_linear_actuator.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/front_linear_actuator.STL" />
+            </geometry>
+        </collision>
+    </link>
+    
+    <joint name="front_linear_actuator_joint" type="continuous">
+        <origin
+            xyz="-0.0381 0.56595 -0.73761"
+            rpy="-2.7686 0 0" />
+        <parent link="chassis_frame_link" />
+        <child link="front_linear_actuator_link" />
+        <axis xyz="-1 0 0" />
+    </joint>
 
+
+    <!-- LINEAR ACTUATOR PIN (active) -->
+    <link name="front_pin_link">
+        <inertial>
+            <origin
+                xyz="0.0380999999849437 0.301357263311942 -0.0750717954965517"
+                rpy="0 0 0" />
+            <mass value="0.231157663070526" />
+            <inertia
+                ixx="0.00252307977138947"
+                ixy="-2.75380567721898E-11"
+                ixz="-4.31985503522541E-11"
+                iyy="2.36838494114387E-05"
+                iyz="1.51236941276613E-09"
+                izz="0.00252286615293323" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/front_pin.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/front_pin.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="front_pin_joint" type="prismatic">
+        <origin xyz="0 0.27785 0" rpy="0 0 0" />
+        <parent link="front_linear_actuator_link" />
+        <child link="front_pin_link" />
+        <axis xyz="0 1 0" />
+        <limit
+            lower="0"
+            upper="0.254"
+            effort="0"
+            velocity="0" />
+    </joint>
+
+
+    <!-- FRONT ARM (passive) -->
+    <link name="front_arm_link">
+        <inertial>
+            <origin
+                xyz="0.0309268553557334 -0.0632052142864503 0.188413279443563"
+                rpy="0 0 0" />
+            <mass value="10.0361236907838" />
+            <inertia
+                ixx="0.164674411826311"
+                ixy="-8.51231242264238E-06"
+                ixz="-3.97833054947433E-06"
+                iyy="0.155874348341206"
+                iyz="-9.94250970714778E-06"
+                izz="0.0216004649665408" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/front_arm.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/front_arm.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="front_arm_joint" type="continuous">
+        <origin
+            xyz="0.069965 0.50615 -0.11778"
+            rpy="1.2483 0 -3.1416" />
+        <parent link="front_pin_link" />
+        <child link="front_arm_link" />
+        <axis xyz="1 0 0" />
+    </joint>
+
+
+
+    <!-- FRONT DRUM BUCKETS (active) TODO: NOT SHOWING UP FOR SOME REASON -->
+    <link name="front_drum_link">
+        <inertial>
+            <origin
+                xyz="-9.36372619941839E-07 -0.000360414208351673 0.1454282644487"
+                rpy="0 0 0" />
+            <mass value="10.2210101575709" />
+            <inertia
+                ixx="0.14087365938897"
+                ixy="0.00874665220683545"
+                ixz="1.17981704669696E-16"
+                iyy="0.139962140558812"
+                iyz="-4.03470283085323E-17"
+                izz="0.274461709457617" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/front_drum.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/front_drum.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="front_drum_joint" type="continuous">
+        <origin
+            xyz="0.17395 -0.07175 0.62106"
+            rpy="-1.5708 0.002598 1.5708" />
+        <parent link="front_arm_link" />
+        <child link="front_drum_link" />
+        <axis xyz="0 0 1" />
+    </joint>
+
+
+
+    <!-- ARM SHOULDER MOUNT (passive) -->
+    <link name="front_shoulder_link">
+        <inertial>
+            <origin
+                xyz="2.57211252296941E-10 -0.007951583557741 -0.0214500104965125"
+                rpy="0 0 0" />
+            <mass value="0.228558797175841" />
+            <inertia
+                ixx="8.10134662860825E-05"
+                ixy="-5.85259832469946E-20"
+                ixz="2.56106749085887E-08"
+                iyy="0.000232977373598918"
+                iyz="-8.64173878419472E-20"
+                izz="0.000270859842524158" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/front_shoulder.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/front_shoulder.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="front_shoulder_joint" type="continuous">
+        <origin
+            xyz="0.016765 -0.07175 -0.32959"
+            rpy="1.5708 -0.87528 -1.5708" />
+        <parent link="front_arm_link" />
+        <child link="front_shoulder_link" />
+        <axis xyz="0 0 1" />
+    </joint>
+
+
+
+    <!-- FRONT SHOULDER DUMMY LINK (not real) -->
+    <link name="front_dummy_link">
+        <inertial>
+            <origin
+                xyz="2.04116373803132E-09 1.69869895927377E-10 0.00915633164782959"
+                rpy="0 0 0" />
+            <mass value="0.0239884979433235" />
+            <inertia
+                ixx="3.39725027464816E-06"
+                ixy="1.81743497272677E-14"
+                ixz="-5.82736392567081E-13"
+                iyy="3.39725012971351E-06"
+                iyz="-4.93123395708124E-14"
+                izz="3.80451081666526E-07" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/front_dummy.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.776470588235294 0.756862745098039 0.737254901960784 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find description)/meshes/front_dummy.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="front_dummy_joint" type="fixed">
+        <origin
+            xyz="-0.0278 0.052387 -0.61085"
+            rpy="3.1416 0 2.105" />
+        <parent link="chassis_frame_link" />
+        <child link="front_dummy_link" />
+    </joint>
 
 </robot>
