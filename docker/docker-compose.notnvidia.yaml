@@ -1,0 +1,6 @@
+services:
+  nostromo:
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
+    environment:
+      - ROC_ENABLE_PRE_VEGA=1
