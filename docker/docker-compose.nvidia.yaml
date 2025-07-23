@@ -1,5 +1,5 @@
 services:
-  nostromo:
+  nostromo_dev:
     runtime: nvidia
     ipc: host
     privileged: true

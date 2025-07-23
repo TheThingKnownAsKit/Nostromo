@@ -1,10 +1,10 @@
 # This is the base compose file. GPU specifications will be overriden by others
+name: nostromo
 services:
-  nostromo:
+  nostromo_dev:
     build:
       context: ..
       dockerfile: docker/Dockerfile
-    container_name: nostromo_dev
     network_mode: host
     privileged: true
     environment:
@@ -12,11 +12,6 @@ services:
       - QT_X11_NO_MITSHM=1        # (optional, avoids some shared memory issues)
       - XDG_RUNTIME_DIR=/tmp/runtime-ubuntu
     volumes:
-      - type: bind
-        source: /dev
-        target: /dev
-        bind:
-          propagation: rshared     # lets hot-plugged jsX/eventX devices flow in
       - type: bind                 # udev database
         source: /run/udev
         target: /run/udev
@@ -28,7 +23,6 @@ services:
         target: /workspaces/Nostromo
         bind:
           propagation: rshared
-      - "/dev:/dev"                 # All devices
     cap_add:
       - SYS_NICE               # For real-time scheduling
     devices:
@@ -39,9 +33,8 @@ services:
       - dialout
 
 
-  docker_git:
+  nostromo_git:
       image: alpine/git:latest      # Small image with git
-      container_name: nostromo_git
       volumes:
         - ~/.ssh:/root/.ssh:ro      # Mount host SSH keys (read-only)
         - ~/.gitconfig:/root/.gitconfig:ro  # Mount host Git config (read-only)
